@@ -1,0 +1,47 @@
+﻿<header Condition="User.Identity.IsAuthenticated">
+
+    <nav class="navbar navbar-light navbar-expand-md bg-light sticky-top p-4">
+
+        <a class="navbar-brand"  href="@Url.Content("~/")"> <b>AspNetTemplate2</b> </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Menu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Sub Menu 1</a></li>
+                        <li><a class="dropdown-item" href="#">Sub Menu 2</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/license">Licence</a></li>
+                        <li><a class="dropdown-item" href="/readme">Readme</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <partial name="/ViewPartials/_UserMenu.cshtml" />
+
+            <partial name="/ViewPartials/_ThemeSelector.cshtml" />
+
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="site içi arama">
+                <button class="btn btn-outline-success" type="submit">Ara</button>
+            </form>
+
+
+
+        </div>
+
+    </nav>
+
+</header>

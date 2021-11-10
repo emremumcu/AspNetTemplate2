@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    System.Security.Claims.ClaimsIdentity ci = ((System.Security.Claims.ClaimsIdentity)User.Identity);
+}
+
+@functions {
+
+    void SelectRole(string roleName)
+    {
+        if(((System.Security.Claims.ClaimsIdentity)User.Identity).HasRole(roleName))
+        {
+            HttpContextAccessor.HttpContext.Session.SetKey<string>(Constants.SessionKey_SelectedRole, roleName);
+        }
+
+        return;
+    }
+}
+
+<div class="dropdown" title="Kullanıcı Bilgileri">
+
+    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-bounding-box"></i> @ci.GetNameIdentifier()
+    </button>
+
+    <div class="dropdown-menu dropdown-menu-end" style="min-width:250px;">
+
+        <h6 class="dropdown-header">Kullanıcı Bilgileri</h6>
+
+        <p class="p-3 text-muted small mb-0">
+            Sistem üzerinde yapılan tüm işlemler bu bilgiler kullanılarak loglanmaktadır.
+        </p>
+
+        <a><span class="dropdown-item-text">@ci.GetNameSurname()</span></a>
+        <a><span class="dropdown-item-text">@ci.GetUnvan()</span></a>
+
+        <a href="@Url.Content("~/Home/UserInfo")"><span class="dropdown-item-text">Detay</span></a>
+
+        <a><hr class="dropdown-divider"></a>
+
+        <h6 class="dropdown-header">Yetkiler</h6>
+
+        @foreach (string s in ci.GetRoles())
+        {
+            if (s.ToAppRole() != default(AppRole))
+            {
+                string secilmisYetki = HttpContextAccessor.HttpContext.Session.GetKey<string>(Constants.SessionKey_SelectedRole);
+
+                string style = (s == secilmisYetki) ? ("text-success") : ("");
+
+                string linkId = new System.Net.NetworkCredential("", StringCipher.EncryptSimpleURL(s, HttpContextAccessor.HttpContext.Session.Id)).Password;
+
+                <a class="dropdown-item small @style" href="@Url.Content("~/Home/SelectRole?roleName=" + linkId)"><i class="bi bi-stop-fill"></i> @s.ToAppRole().RoleText</a>
+            }
+        }
+
+        <a><hr class="dropdown-divider"></a>
+
+        <a class="dropdown-item small" href="@Url.Content("~/Account/Logout")"><i class="bi bi-x-circle"></i> Çıkış</a>
+
+    </div>
+
+</div>
+
+

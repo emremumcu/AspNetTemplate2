@@ -1,0 +1,11 @@
+{
+  "OptGroup1": {
+    "Val1": "OptGroup1.Val1",
+    "Val2": "OptGroup1.Val2"
+  },
+
+  "OptGroup2": {
+    "Val1": "OptGroup2.Val1",
+    "Val2": "OptGroup2.Val2"
+  }
+}

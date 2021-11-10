@@ -1,0 +1,36 @@
+﻿
+<div class="my-5">
+
+    <h1>Kullanıcı Bilgileri</h1>
+
+    <form method="post" asp-controller="Account" asp-action="Login">
+
+        <hr />
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Kullanıcı Adı</label>
+            <div class="col-sm-4">
+                <input type="text" readonly class="form-control" name="username" value="emumcu2">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Şifre</label>
+            <div class="col-sm-4">
+                <input type="password" readonly class="form-control" name="password" value="123456">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="submit" class="btn btn-dark" value="Giriş" />
+            </div>
+        </div>
+
+        
+
+    </form>
+
+</div>
+
+
+

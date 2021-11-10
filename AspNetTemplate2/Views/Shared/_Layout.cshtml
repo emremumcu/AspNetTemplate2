@@ -1,0 +1,85 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- css placeholder for themes (DON'T change) -->
+    <link id="bootstrap" href="#" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <title>ASP.NET Core MVC Boilerplate Template (V.2)</title>
+    <link href="~/css/loader2.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-select.min.css" rel="stylesheet" />
+    @*@RenderSection("headSection", required: false)*@
+    @await RenderSectionAsync("headSection", required: false)
+</head>
+
+<body style="font-family: 'Raleway', sans-serif; ">
+
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+
+    <partial-c when="@User.Identity.IsAuthenticated" name="/ViewPartials/_Header.cshtml" />
+
+    <div class="container-lg">
+
+        <div class="p-5 m-5 bg-light rounded-3">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src="~/js/sweetalert2.all.min.js"></script>
+    <script src="~/js/bootstrap-select.min.js"></script>
+    <script src="~/js/js.cookie.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#preloader").fadeOut("slow");
+        });
+
+        $(window).on("load", function () {
+            //...
+        });
+
+        window.onload = () => {
+            document.body.addEventListener('submit', function (e) {
+                $("#preloader").fadeIn("slow");
+            });
+        }
+    </script>
+
+
+
+    @*@RenderSection("scriptSection", required: false)*@
+    @await RenderSectionAsync("scriptSection", required: false)
+
+    @{
+        string message = HttpContextAccessor.HttpContext.Session.GetKey<string>(Constants.SessionKey_System_Message);
+
+        if (!string.IsNullOrEmpty(message))
+        {
+            HttpContextAccessor.HttpContext.Session.SetKey<string>(Constants.SessionKey_System_Message, string.Empty);
+
+            <script>
+                function ShowMessage(msg) {
+                    Swal.fire({ title: 'Bilgi', html: msg, icon: 'info', confirmButtonText: 'Tamam' });
+                }
+                ShowMessage('@message');
+            </script>
+        }
+    }
+
+</body>
+</html>
