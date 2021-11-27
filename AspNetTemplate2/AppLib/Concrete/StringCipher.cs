@@ -40,11 +40,11 @@ namespace AspNetTemplate2.AppLib.Concrete
             return bytes;
         }
 
-        private static RijndaelManaged CreateRijndaelManaged(string password)
+        private static Aes CreateAes(string password)
         {
             Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(password, CreateSalt(password));
 
-            RijndaelManaged aesAlg = new RijndaelManaged();
+            Aes aesAlg = Aes.Create();
             aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
             aesAlg.IV = key.GetBytes(aesAlg.BlockSize / 8);
             //aesAlg.GenerateKey();
@@ -58,7 +58,7 @@ namespace AspNetTemplate2.AppLib.Concrete
         /// </summary>
         private static byte[] Encryptor(string plainText, string password)
         {
-            RijndaelManaged aesAlg = CreateRijndaelManaged(password);
+            Aes aesAlg = CreateAes(password);
 
             ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
@@ -83,7 +83,7 @@ namespace AspNetTemplate2.AppLib.Concrete
         /// </summary>
         private static byte[] SimpleEncryptor(string plainText, string password)
         {
-            RijndaelManaged aesAlg = CreateRijndaelManaged(password);
+            Aes aesAlg = CreateAes(password);
 
             ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
@@ -104,7 +104,7 @@ namespace AspNetTemplate2.AppLib.Concrete
         {
             using (MemoryStream msDecrypt = new MemoryStream(encryptedBytes))
             {
-                RijndaelManaged aesAlg = CreateRijndaelManaged(password);
+                Aes aesAlg = CreateAes(password);
 
                 aesAlg.IV = GetIVFromByteArr(msDecrypt); // iv is extracted from stream to filter out salt
 
@@ -126,7 +126,7 @@ namespace AspNetTemplate2.AppLib.Concrete
         /// </summary>
         private static string SimpleDecryptor(byte[] encryptedBytes, string password)
         {
-            RijndaelManaged aesAlg = CreateRijndaelManaged(password);
+            Aes aesAlg = CreateAes(password);
 
             ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
