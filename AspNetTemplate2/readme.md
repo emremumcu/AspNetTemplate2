@@ -2,16 +2,32 @@
 
 # Visual Studio Extensions
 
-* Power Commands for Visual Studio
-* Align Assignments
-* Match Margin
-* Copy As Html
-* Solution Error Visualizer
-* Time Stamp Margin
-* CodeMaid (Steve Cadwallader)
-* Markdown Editor (Mads Kristensen)
-* File Icons (Mads Kristensen)
-* VSColorOutput
+Markdown Editor (64-bit)
+https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor64
+
+CodeMaid VS2022
+https://marketplace.visualstudio.com/items?itemName=SteveCadwallader.CodeMaidVS2022
+
+VSColorOutput64
+https://marketplace.visualstudio.com/items?itemName=MikeWard-AnnArbor.VSColorOutput64
+
+Visual Studio Theme Pack
+https://marketplace.visualstudio.com/items?itemName=idex.vsthemepack
+
+Productivity Power Tools 2022
+https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.ProductivityPowerPack2022
+
+Dummy Text Generator
+https://marketplace.visualstudio.com/items?itemName=MadsKristensen.DummyTextGenerator
+
+File Icons
+https://marketplace.visualstudio.com/items?itemName=MadsKristensen.FileIcons
+
+Visual Studio Color Theme Designer 2022
+https://marketplace.visualstudio.com/items?itemName=idex.colorthemedesigner2022
+
+VS Theme Colors 2022
+https://marketplace.visualstudio.com/items?itemName=MadsKristensen.VSThemeColors2022
 
 # Visual Studio Configuration
 
