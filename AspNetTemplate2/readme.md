@@ -55,6 +55,8 @@ git reset origin/master
 ```
 Here `<url>` is the URL of the remote repository (for instance, git@github.com:git/git.git or https://github.com/git/git.git).
 
+git remote add origin  https://github.com/emremumcu/***.git
+
 # Changing default SSL port number
 
 IISExpress uses http.sys for its communication and it requires SSL ports to be registered as Administrator.
