@@ -29,6 +29,9 @@ https://marketplace.visualstudio.com/items?itemName=idex.colorthemedesigner2022
 VS Theme Colors 2022
 https://marketplace.visualstudio.com/items?itemName=MadsKristensen.VSThemeColors2022
 
+SQLite and SQL Server Compact Toolbox
+https://marketplace.visualstudio.com/items?itemName=ErikEJ.SQLServerCompactSQLiteToolbox
+
 # Visual Studio Configuration
 
 * Tools -> Options -> Text Editor, in the Display group, uncheck "Highlight current line"
@@ -72,8 +75,10 @@ In Razor Views, implicit expressions cannot contain C# generics, as the characte
 inside the brackets (<>) are interpreted as an HTML tag. 
     
 The following code is not valid:
-    
+
+``` csharp    
 <p>@GenericMethod<int>()</p>
+``` 
 
 Generic method calls must be wrapped in an explicit Razor expression or a Razor code block.
 
@@ -83,7 +88,9 @@ Razor expression:
 
 Explicit Razor expressions consist of an @ symbol with balanced parenthesis: @()
 
+``` csharp
 <p>@(GenericMethod<int>())</p>
+``` 
 
     
 Razor code blocks:
@@ -92,12 +99,16 @@ Razor code blocks:
 Razor code blocks start with @ and are enclosed by {}. Unlike expressions, C# code inside code blocks isn't rendered.
 Code blocks and expressions in a view share the same scope and are defined in the order they are written.
 
+``` csharp
 @{
     var str = "This is a string.";
 }
+``` 
+
 
 In code blocks, we can declare local functions with markup to serve as templating methods:
 
+``` csharp
 @{
     void RenderName(string name)
     {
@@ -106,34 +117,38 @@ In code blocks, we can declare local functions with markup to serve as templatin
 
     RenderName("Emre");        
 }
-
+``` 
     
 Implicit transitions:
 ---------------------
 
 The default language in a code block is C#, but the Razor Page can transition back to HTML:
 
+``` csharp
 @{
     var inCSharp = true;
     <p>Now in HTML, was in C# @inCSharp</p>
 }
+```
 
 Explicit delimited transition:
 ------------------------------
 
 To define a subsection of a code block that should render HTML, surround the characters for 
-rendering with the Razor <text> tag:
+rendering with the Razor `<text>` tag:
 
+``` csharp
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
     <text>Name: @person.Name</text>
 }
+``` 
 
 Use this approach to render HTML that isn't surrounded by an HTML tag. Without an HTML or 
 Razor tag, a Razor runtime error occurs.
 
-The <text> tag is useful to control whitespace when rendering content:
+The `<text>` tag is useful to control whitespace when rendering content:
 
     * Only the content between the <text> tag is rendered.
     * No whitespace before or after the <text> tag appears in the HTML output.
@@ -143,10 +158,12 @@ Explicit line transition:
 
 To render the rest of an entire line as HTML inside a code block, use @: syntax:
 
+``` csharp
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
     @:Name: @person.Name
 }
+``` 
 
 Without the @: in the code, a Razor runtime error is generated.
